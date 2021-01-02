@@ -17,6 +17,7 @@ const App = () => {
     userHasAuthenticated(false);
     history.push("/login");
   };
+ 
 
   useEffect(() => {
     const onLoad = async () => {
@@ -31,9 +32,8 @@ const App = () => {
       setIsAuthenticating(false);
     };
     onLoad();
-  }, []);
-
-
+  }, [history]);
+  
   return (
     !isAuthenticating && (
       <div className="App container py-3">
