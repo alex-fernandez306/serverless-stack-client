@@ -5,6 +5,8 @@ import Routes from "./Routes";
 import { AppContext } from "./libs/contextLib";
 import { Auth } from "aws-amplify";
 import { useHistory } from "react-router-dom";
+import ErrorBoundary from "./components/ErrorBoundary";
+
 import "./App.css";
 
 const App = () => {
@@ -17,7 +19,6 @@ const App = () => {
     userHasAuthenticated(false);
     history.push("/login");
   };
- 
 
   useEffect(() => {
     const onLoad = async () => {
@@ -33,7 +34,7 @@ const App = () => {
     };
     onLoad();
   }, [history]);
-  
+
   return (
     !isAuthenticating && (
       <div className="App container py-3">
@@ -65,9 +66,11 @@ const App = () => {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
-          <Routes></Routes>
-        </AppContext.Provider>
+        <ErrorBoundary>
+          <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
+            <Routes></Routes>
+          </AppContext.Provider>
+        </ErrorBoundary>
       </div>
     )
   );
