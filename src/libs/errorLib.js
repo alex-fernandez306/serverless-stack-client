@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
 
-const onError = () => {
-
+const onError = (e) => {
+  console.log(e);
 };
 
 export  {
