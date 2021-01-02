@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form } from "react-bootstrap";
+import { Form, Alert } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import { Auth } from "aws-amplify";
 import "./Login.css";
@@ -10,6 +10,7 @@ import { onError } from "../libs/errorLib";
 export default function Login() {
   const { userHasAuthenticated } = useAppContext();
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [fields, handleFieldChange] = useFormFields({
     email: "",
     password: "",
@@ -27,6 +28,8 @@ export default function Login() {
       userHasAuthenticated(true);
     } catch (e) {
       onError(e);
+   
+      setError(e.message);
       setIsLoading(false);
     }
   }
@@ -34,6 +37,7 @@ export default function Login() {
   return (
     <div className="Login">
       <Form onSubmit={handleSubmit}>
+        {error && <Alert variant="danger">{error}</Alert>}
         <Form.Group size="lg" controlId="email">
           <Form.Label>Email</Form.Label>
           <Form.Control autoFocus type="email" value={fields.email} onChange={handleFieldChange}></Form.Control>
