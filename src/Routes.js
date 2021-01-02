@@ -22,9 +22,9 @@ export default function Routes() {
       <AuthenticatedRoute exact path="/notes/new">
         <NewNote />
       </AuthenticatedRoute>
-      <AuthenticatedRoute exact path="/">
+      <Route exact path="/">
         <Home />
-      </AuthenticatedRoute>
+      </Route>
       <AuthenticatedRoute exact path="/notes/:id">
         <Notes />
       </AuthenticatedRoute>

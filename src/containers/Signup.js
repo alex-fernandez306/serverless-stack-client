@@ -40,9 +40,10 @@ const Signup = () => {
         password: fields.password,
       });
       setNewUser(newUser);
+      
     } catch (e) {
       onError(e);
-      setError(e);
+      setError(e.message);
       setIsLoading(false);
     }
     setIsLoading(false);
