@@ -2,7 +2,13 @@ const varPrefix = (process.env.REACT_APP_STAGE === "prod" ? "PROD" : "DEV");
 
 const getKey = ( key ) => {
   const targetVar = `${varPrefix}_${key}`;
-  return process.env[targetVar];
+  const reactAppPrefixVar = `REACT_APP_${varPrefix}_${key}`;
+  
+  if (process.env[targetVar] && process.env[targetVar] !== "") {
+    return process.env[targetVar];
+  }
+
+  return process.env[reactAppPrefixVar];
 };
 
 const config = {
@@ -25,5 +31,6 @@ const config = {
   },
 };
 
+console.log(config)
 
 export default config;
