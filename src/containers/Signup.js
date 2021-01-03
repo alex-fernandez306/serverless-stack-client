@@ -6,6 +6,7 @@ import { useAppContext } from "../libs/contextLib";
 import { useFormFields } from "../libs/hooksLib";
 import { onError } from "../libs/errorLib";
 import { Auth } from "aws-amplify";
+import { LinkContainer } from "react-router-bootstrap";
 import "./Signup.css";
 
 const Signup = () => {
@@ -40,7 +41,6 @@ const Signup = () => {
         password: fields.password,
       });
       setNewUser(newUser);
-      
     } catch (e) {
       onError(e);
       setError(e.message);
@@ -71,6 +71,7 @@ const Signup = () => {
           <Form.Control autoFocus type="tel" onChange={handleFieldChange} value={fields.confirmationCode} />
           <Form.Text muted>Please check your email for the code.</Form.Text>
         </Form.Group>
+
         <LoaderButton
           block
           size="lg"
@@ -99,6 +100,14 @@ const Signup = () => {
         <Form.Group controlId="confirmPassword" size="lg">
           <Form.Label>Confirm Password</Form.Label>
           <Form.Control type="password" onChange={handleFieldChange} value={fields.confirmPassword} />
+        </Form.Group>
+        <Form.Group>
+          <LinkContainer to="/forgot-password">
+            <div>
+            Forgot Password? <a href="/forgot-password">Reset Password</a>
+            </div>
+     
+          </LinkContainer>
         </Form.Group>
         <LoaderButton block size="lg" type="submit" variant="success" isLoading={isLoading} disabled={!validateForm()}>
           Signup

@@ -1,0 +1,10 @@
+@media all and (min-width: 480px) {
+  .Subscriptions {
+    padding: 60px 0;
+  }
+
+  .Subscriptions form {
+    margin: 0 auto;
+    max-width: 480px;
+  }
+}

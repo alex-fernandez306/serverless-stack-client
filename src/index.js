@@ -8,7 +8,7 @@ import { Amplify } from "aws-amplify";
 import config from "./config";
 import { initSentry } from "./libs/errorLib";
 
-initSentry();
+//initSentry();
 Amplify.configure({
   Auth: {
     mandatorySignIn: true,
