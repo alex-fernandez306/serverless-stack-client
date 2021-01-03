@@ -1,21 +1,18 @@
-const varPrefix = (process.env.REACT_APP_STAGE === "prod" ? "PROD" : "DEV");
+const varPrefix = process.env.REACT_APP_STAGE === "prod" ? "PROD" : "DEV";
 
-const getKey = ( key ) => {
+const getKey = (key) => {
   const targetVar = `${varPrefix}_${key}`;
   const reactAppPrefixVar = `REACT_APP_${varPrefix}_${key}`;
-  
+
   if (process.env[targetVar] && process.env[targetVar] !== "") {
     return process.env[targetVar];
   }
 
   return process.env[reactAppPrefixVar];
 };
-console.log(process.env);
-
 const config = {
   MAX_ATTACHMENT_SIZE: 5000000,
-  STRIPE_KEY:
-  getKey("STRIPE_KEY"),
+  STRIPE_KEY: getKey("STRIPE_KEY"),
   s3: {
     REGION: getKey("REGION"),
     BUCKET: getKey("BUCKET"),
@@ -30,8 +27,9 @@ const config = {
     APP_CLIENT_ID: getKey("APP_CLIENT_ID"),
     IDENTITY_POOL_ID: getKey("IDENTITY_POOL_ID"),
   },
+  sentry: {
+    URL: getKey("SENTRY_URL"),
+  },
 };
-
-console.log(config)
 
 export default config;

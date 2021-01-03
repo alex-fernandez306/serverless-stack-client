@@ -1,5 +1,6 @@
 import * as Sentry from "@sentry/react";
 import { Integrations } from "@sentry/tracing";
+import config from "../config";
 
 const isLocal = process.env.NODE_ENV === "development";
 
@@ -9,7 +10,7 @@ const initSentry = () => {
   }
 
   Sentry.init({
-    dsn: "https://bcbd91c7ac074aacb6f6f60533261461@o499122.ingest.sentry.io/5577332",
+    dsn: config.sentry.URL,
     autoSessionTracking: true,
     integrations: [
       new Integrations.BrowserTracing(),
@@ -40,8 +41,6 @@ const onError = (error) => {
   }
 
   logError(error, errorInfo);
-
-  alert(message);
 };
 
 export  {
