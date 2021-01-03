@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Form } from "react-bootstrap";
 import { useFormFields } from "../libs/hooksLib";
 import LoaderButton from "./LoaderButton";
@@ -25,7 +25,6 @@ const ForgotPasswordForm = ({ isLoading = false, handleSubmit }) => {
           <Form.Group size="lg" controlId="email">
             <Form.Label>Email</Form.Label>
             <Form.Control value={fields.email} onChange={handleFieldChange} placeholder="Email Address" />
-            
           </Form.Group>
           <Form.Group>
             <LoaderButton

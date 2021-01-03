@@ -13,6 +13,7 @@ const App = () => {
   const history = useHistory();
   const [isAuthenticated, userHasAuthenticated] = useState(false);
   const [isAuthenticating, setIsAuthenticating] = useState(true);
+  const [user, setUser] = useState(null);
 
   const handleLogout = async () => {
     await Auth.signOut();
@@ -24,7 +25,9 @@ const App = () => {
     const onLoad = async () => {
       try {
         await Auth.currentSession();
+        const user = await Auth.currentAuthenticatedUser();
         userHasAuthenticated(true);
+        setUser(user);
       } catch (e) {
         if (e !== "No current user") {
           history.push("/login");
@@ -67,7 +70,7 @@ const App = () => {
           </Navbar.Collapse>
         </Navbar>
         <ErrorBoundary>
-          <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
+          <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated, user }}>
             <Routes></Routes>
           </AppContext.Provider>
         </ErrorBoundary>

@@ -66,6 +66,8 @@ const Signup = () => {
     return (
       <Form onSubmit={handleConfirmationSubmit}>
         {error && <Alert variant="danger">{error}</Alert>}
+
+       
         <Form.Group controlId="confirmationCode" size="lg">
           <Form.Label>Confirmation Code</Form.Label>
           <Form.Control autoFocus type="tel" onChange={handleFieldChange} value={fields.confirmationCode} />
@@ -89,6 +91,7 @@ const Signup = () => {
   const renderForm = () => {
     return (
       <Form onSubmit={handleSubmit}>
+         <h2>Create an Account</h2>
         <Form.Group controlId="email" size="lg">
           <Form.Label>Email</Form.Label>
           <Form.Control autoFocus type="email" value={fields.email} onChange={handleFieldChange} />
@@ -107,6 +110,13 @@ const Signup = () => {
             Forgot Password? <a href="/forgot-password">Reset Password</a>
             </div>
      
+          </LinkContainer>
+        </Form.Group>
+        <Form.Group>
+          <LinkContainer to="/login">
+            <div>
+              Already have an account? <a href="/login">Login</a>
+            </div>
           </LinkContainer>
         </Form.Group>
         <LoaderButton block size="lg" type="submit" variant="success" isLoading={isLoading} disabled={!validateForm()}>
