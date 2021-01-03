@@ -10,6 +10,7 @@ const getKey = ( key ) => {
 
   return process.env[reactAppPrefixVar];
 };
+console.log(process.env);
 
 const config = {
   MAX_ATTACHMENT_SIZE: 5000000,
